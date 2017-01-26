@@ -1,0 +1,2854 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\usepackage{listings}
+%\usetheme{Warsaw}
+%\usetheme{Antibes}	% tree outline, neat
+%\usetheme{JuanLesPins}	% like Antibes, with shading
+%\usetheme{Bergen}	% outline on side
+%\usetheme{Luebeck}	% like Warsaw, square sides
+%\usetheme{Berkeley}	% interesting left bar outline
+%\usetheme{Madrid}	% clean, nice.  7/12 page numbers
+%\usetheme{Berlin}	% dots show slide number
+%\usetheme{Malmoe}	% OK, plain, unshaded
+%\usetheme{Boadilla}	% nice, white bg, no top bar
+%\usetheme{Marburg}	% nice, outline on right
+%\usetheme{boxes}	% ???
+%\usetheme{Montpellier}	% tree outline on top, plainish white
+%\usetheme{Copenhagen}	% like Warsaw
+%\usetheme{PaloAlto}	% looks good
+%\usetheme{Darmstadt}	% like Warsaw with circle outline
+%\usetheme{Pittsburgh}
+%\usetheme{default}
+%\usetheme{Rochester}	% like boxy, unshaded warsaw
+%\usetheme{Dresden}	% circle outline on top
+%\usetheme{Singapore}	% purple gradient top
+%\usetheme{Frankfurt}	% like Warsaw with circle outline on top
+%\usetheme{Szeged}
+\usetheme{Goettingen}	% light purple right bar outline
+%\usetheme{Warsaw}
+%\usetheme{Hannover}	% like Goett with bar on left
+%\usetheme{compatibility}
+%\usetheme{Ilmenau}
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+
+%\usecolortheme{seahorse}
+\usecolortheme{rose}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+A modern tool for interfacing and creating bare bone C programmes
+\end_layout
+
+\begin_layout Author
+Jordan Hrycaj
+\end_layout
+
+\begin_layout Institute
+<jordan@mjh-it.co.uk>
+\end_layout
+
+\begin_layout TitleGraphic
+\begin_inset Graphics
+	filename hat3.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+Camsec - 26/01/2017
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The following causes the table of contents to be shown at the beginning
+ of every subsection.
+ Delete this, if you do not want it.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+%  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+%    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+%    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+%  }
+\end_layout
+
+\begin_layout Plain Layout
+
+%}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+If you wish to uncover everything in a step-wise fashion, uncomment the
+ following command:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Overview
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Code Generation Tools For C
+\end_layout
+
+\begin_layout Subsection
+My Problem: Embedded/Multi-Platform Compiler
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Motivation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Support for operating systems
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Windows, Posix (Linux, Darwin), BSD, embedded
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Support for architectures
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Intel/AMD, ARM, probably GPU
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Write code once, use it everywhere
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+JVM not an option on small systems
+\end_layout
+
+\begin_layout Itemize
+support hardware (mm registers, mmu)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsection
+Why I would stay with C
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Stay with C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Checking out well known systems
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Comparing some alternatives to C.
+\end_layout
+
+\begin_layout Itemize
+C++
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The industry standard, has evolved considerably
+\end_layout
+
+\begin_layout Itemize
+Still not happy with C++ (eg.
+ memory management)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Alert
+status open
+
+\begin_layout Plain Layout
+Older systems might be unsupported
+\end_layout
+
+\end_inset
+
+ (as of C++11/14)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Alert
+status open
+
+\begin_layout Plain Layout
+Bloated binaries
+\end_layout
+
+\end_inset
+
+ (think of IoT)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Alternative Rust
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Modern, seems to tick most boxes (ref counts, no GC)
+\end_layout
+
+\begin_layout Itemize
+Feels a bit like designed-by-committee
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Alert
+status open
+
+\begin_layout Plain Layout
+Older systems are unsupported
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Alternative GO
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Many good ideas
+\end_layout
+
+\begin_layout Itemize
+A bit more low-level (than Rust)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Alert
+status open
+
+\begin_layout Plain Layout
+GCC/GO not available on Windows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+More examples ...
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Using plain/bare bone C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Why using C at all?
+\end_layout
+
+\begin_layout Itemize
+Coding in C can be a pain
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Bloated code (but small binaries)
+\end_layout
+
+\begin_layout Itemize
+...
+ like crawling when you could use a car
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Bare bone C++ is possible
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+eg.
+ w/o traps/exceptions
+\end_layout
+
+\begin_layout Itemize
+highly dependent on target system compiler/linker
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+...
+ but plain C
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+It is universally supported, profiling, optimisers etc.
+\end_layout
+
+\begin_layout Itemize
+Fall back strategies (older systems, missing features)
+\end_layout
+
+\begin_layout Itemize
+Small language (compared to C++), features in libraries
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+...
+ so generate C code, practised already widely
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang british
+CPP
+\lang english
+, code generators (bison, flex, re2c etc.)
+\end_layout
+
+\begin_layout Itemize
+C itself
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Solution: Compile to C
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Compilation: high level language → C → binary
+\end_layout
+
+\begin_layout Itemize
+Wish list for a compiler: Must Have
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Functional support, closures
+\end_layout
+
+\begin_layout Itemize
+Convincing memory management (GC, ref count)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Important
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Complex but clean data structures
+\end_layout
+
+\begin_layout Itemize
+Generic C support (eg.
+ inline, FFI)
+\end_layout
+
+\begin_layout Itemize
+Cross-compiling made easy
+\end_layout
+
+\begin_layout Itemize
+Templates/Macros
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Optional
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Multi threading support (actors, pools, etc.)
+\end_layout
+
+\begin_layout Itemize
+Built-in OO
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Remark:
+\begin_inset Flex Emphasize
+status open
+
+\begin_layout Plain Layout
+ I found some really interesting stuff but many compilers produce C++ code
+ which is what I wanted to avoid.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Observations after choosing NIM 
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Choosing NIM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Useful tools to generate C code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Plain C compilers
+\end_layout
+
+\begin_layout Itemize
+Chicken Scheme (since 2000)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compiler/interpreter
+\end_layout
+
+\begin_layout Itemize
+Rich library (items called 
+\begin_inset Quotes eld
+\end_inset
+
+eggs
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Small runtime library
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Vala OO compiler (since 2006)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C# like programming language
+\end_layout
+
+\begin_layout Itemize
+GLib objects (can do without on a subset of features)
+\end_layout
+
+\begin_layout Itemize
+GLib seems to be portable but is bloated and big
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+NIM (formerly Nimrod, since 2008)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Imperative, statically typed, functional
+\end_layout
+
+\begin_layout Itemize
+Influenced by Ada, C++, Lisp, C#, etc.
+\end_layout
+
+\begin_layout Itemize
+AST exposed for meta/macro programming
+\end_layout
+
+\begin_layout Itemize
+Produces C code ready for target system
+\end_layout
+
+\begin_layout Itemize
+Small runtime library (unless GC is avoided)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+I ended up choosing NIM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+But Chicken would have been OK as well
+\end_layout
+
+\begin_layout Itemize
+Advantages
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Seems to be used in some industry/business applications
+\end_layout
+
+\begin_layout Itemize
+Expressive syntax feels more like scripting (Perl/Python)
+\end_layout
+
+\begin_layout Itemize
+Simple but (sometimes too) powerful way of coding
+\end_layout
+
+\begin_layout Itemize
+Generics (~C++ templates), templates (simple macros)
+\end_layout
+
+\begin_layout Itemize
+Macros (AST programming, ~Lisp macros) for DSL
+\end_layout
+
+\begin_layout Itemize
+Can also produce C++, Obj C, and JS (probably others)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caveats
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Still experimental version
+\end_layout
+
+\begin_layout Itemize
+Set up by a 
+\shape slanted
+benevolent dictator 
+\shape default
++ crew of enthusiasts
+\end_layout
+
+\begin_layout Itemize
+C coding experience needed for NIM to be most useful
+\end_layout
+
+\begin_layout Itemize
+No backing funds like for Go, Rust
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Verdict after using it for several months
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Useful even if support 
+\lang british
+stops
+\end_layout
+
+\begin_layout Itemize
+Most features I need are available
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Working with NIM
+\end_layout
+
+\begin_layout Subsection
+The Language
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Hello World
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+NIM is elegant (I am not aware of another elegant language)
+\end_layout
+
+\begin_layout Itemize
+The programme
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+echo "Hello World"
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+MAIN calling a function
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="1">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+proc helloWorld() =
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+​‌‌​
+\begin_inset space ~
+\end_inset
+
+echo "Hello World"
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+helloWorld()
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+MAIN calling a function with optional argument
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="1">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+proc helloWorld(text = 
+\begin_inset Quotes eld
+\end_inset
+
+Hello World
+\begin_inset Quotes erd
+\end_inset
+
+) =
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+echo text
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size footnotesize
+\begin_inset Quotes eld
+\end_inset
+
+Hello People
+\begin_inset Quotes erd
+\end_inset
+
+.helloWorld
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Note that the type of 
+\family typewriter
+text
+\family default
+ is 
+\family typewriter
+string
+\family default
+ – inferred by its default argument.
+ A more complete way of stating the argument would be:
+\family typewriter
+ text:string=
+\begin_inset Quotes eld
+\end_inset
+
+Hello World
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+See http://nim-by-example.github.io
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Oddities/Niceties
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Things that are different in NIM
+\end_layout
+
+\begin_layout Itemize
+Symbol names (1st character case important)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+theSymbol
+\family default
+, 
+\family typewriter
+the_symbol
+\family default
+, 
+\family typewriter
+theEsymboL
+\family default
+ are equal
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+TheSymbol
+\family default
+ and 
+\family typewriter
+theSymbol
+\family default
+ are different
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Closure support often needs annotation
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+For C the pragma 
+\family typewriter
+{.procvar.}
+\family default
+ usually works
+\end_layout
+
+\begin_layout Itemize
+Compiler needs to figure out for potential concurrency
+\end_layout
+
+\begin_layout Itemize
+Results in plain C (no run time lib needed)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Many NIM features are are available at compile time
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Can process files to create complex static data
+\end_layout
+
+\begin_layout Itemize
+Functional filters and operators but no OO
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Sequence functions head() and tail() are missing
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\family default
+\size default
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+proc
+\begin_inset space ~
+\end_inset
+
+tail*[T](s:
+\begin_inset space ~
+\end_inset
+
+openArray[T]):
+\begin_inset space ~
+\end_inset
+
+seq[T]
+\begin_inset space ~
+\end_inset
+
+{.inline.}
+\begin_inset space ~
+\end_inset
+
+=
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if 0 < s.len:
+\begin_inset space ~
+\end_inset
+
+(@s)[1
+\begin_inset space ~
+\end_inset
+
+..
+\begin_inset space ~
+\end_inset
+
+<s.len]
+\begin_inset space ~
+\end_inset
+
+else:
+\begin_inset space ~
+\end_inset
+
+@[]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Only finite sequence types supported
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+No tail recursion for formally unbounded sequences
+\end_layout
+
+\begin_layout Itemize
+Sequence type ad-hoc extensible
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Speed/Time Comparisons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size footnotesize
+http://arthurtw.github.io/2015/01/12/quick-comparison-nim-vs-rust.html
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\family default
+\size default
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top" width="0pt">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Game of Life
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Rust
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Nim/boundChecks:on
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+n=30000
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+with map print 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.75x / 1.87x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1x=3.33s 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+without map print
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.15x / 1.72x
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1x=0.78s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+http://togototo.wordpress.com/2013/08/23/benchmarks-round-two-parallel-go-rust-d-s
+cala-and-nimrod/
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\size footnotesize
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\family default
+\size default
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Lang
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Compiler
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Speed/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+%Fastest
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size scriptsize
+Res.Mem/KiB
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+D
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+ldc2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+0.812
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+116.38%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+26,536
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+C++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+clang++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+0.945
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+100.00%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+25,552
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+Nimrod
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+clang
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+0.980
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+96.43%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+25,932
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+C++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+g++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.025
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+92.20%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+25,532 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+Rust
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+rustc
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.109
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+85.21%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+47,708
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+Go
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+6g
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.184
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+79.81%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+30,768
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+C
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+clang
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.199 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+78.82% 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+25,796
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+Scala 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+scala
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+1.228
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+76.95%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+72,960
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+Go
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+gccgo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+2.710
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+34.87%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+\size tiny
+69,120
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ (excerpt)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+NIM Workflow
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Code Generation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compile-and-run a programme with
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+nim c -r helloworld.nim
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+what happens in the background is
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The compiler builds up an AST
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+several compiler passes
+\end_layout
+
+\begin_layout Itemize
+imported code libraries are merged into the AST
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Depending on the target code – assume C for now
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C code files are generated
+\end_layout
+
+\begin_layout Itemize
+placed into the 
+\family typewriter
+./nimcache
+\family default
+ directory
+\end_layout
+
+\begin_layout Itemize
+one C source per imported library
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The compiler starts a C compiler on the C sources
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+optimised for GCC, Clang, Vcc (
+\lang british
+fallback
+\lang english
+: tiny CC)
+\end_layout
+
+\begin_layout Itemize
+produces binary
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The binary is started
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NIM Tools
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Besides Compiler
+\end_layout
+
+\begin_layout Itemize
+Rudimentary REPL
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Install: 
+\family typewriter
+nimble install nrpl
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+NIM embedded debugger
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+endb
+\family default
+, outdated
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+GDB
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compile NIM with line pragmas enabled
+\end_layout
+
+\begin_layout Itemize
+Works fine for experienced C coder
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+nim2c
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Convert C code to NIM code
+\end_layout
+
+\begin_layout Itemize
+Handy tool, needs manual post-processing
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Simple Functional Stuff
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+code walk over misc/nimsrc.nim
+\end_layout
+
+\begin_layout Itemize
+generic function: 
+\family typewriter
+tail()
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+generic T: any data type, normally inferred (see tests)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+openArray
+\family default
+: ordered data items of all the same type
+\end_layout
+
+\begin_layout Itemize
+type inference: ..
+ 
+\family typewriter
+else @[]
+\end_layout
+
+\begin_layout Itemize
+pattern matching for C optimisation
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+seq
+\family default
+ and 
+\family typewriter
+openArray
+\end_layout
+
+\begin_layout Itemize
+check generated code
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+function: 
+\family typewriter
+cnfValue()
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+input 
+\family typewriter
+cnfTable()
+\family default
+: 
+\family typewriter
+seq[]
+\family default
+ of 
+\family typewriter
+string
+\family default
+ pairs (AVP list)
+\end_layout
+
+\begin_layout Itemize
+add item that always matches: 
+\family typewriter
+concat(@[(s,
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+)])
+\end_layout
+
+\begin_layout Itemize
+filter out first match: 
+\family typewriter
+filterIt(it[0] == s)
+\end_layout
+
+\begin_layout Itemize
+get first match: 
+\family typewriter
+head()
+\end_layout
+
+\begin_layout Itemize
+extract pair from sequence: 
+\family typewriter
+[0]
+\family default
+, get value: 
+\family typewriter
+[1]
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Compile Time Coding
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+code walk over misc/nimsrc.nim
+\end_layout
+
+\begin_layout Itemize
+template: 
+\family typewriter
+nimSrcFilename()
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+compiler support: 
+\family typewriter
+instantiationInfo()
+\end_layout
+
+\begin_layout Itemize
+info about code that invokes it, so it must be a macro/template
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+function
+\family typewriter
+s:
+\family default
+ 
+\family typewriter
+cnfTable()
+\family default
+ 
+\family typewriter
+and
+\family default
+ 
+\family typewriter
+cnfValue()
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+extract AVP list from C header 
+\family typewriter
+config.h
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+from 
+\family typewriter
+autoconf
+\family default
+ environment
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+all compile time: 
+\family typewriter
+slurp
+\family default
+/staticRead, 
+\family typewriter
+gorge
+\family default
+/staticExec
+\end_layout
+
+\begin_layout Itemize
+no OO support
+\end_layout
+
+\begin_layout Itemize
+compiler quits if 
+\family typewriter
+slurp()
+\family default
+ fails
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+C Bindings
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+code walk over zlib/zlib.nim
+\end_layout
+
+\begin_layout Itemize
+C 
+\family typewriter
+struct z_stream
+\family default
+ vs.
+ NIM 
+\family typewriter
+object TZStream
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+NIM objects are GC controlled (tuples are not)
+\end_layout
+
+\begin_layout Itemize
+compatibility types 
+\family typewriter
+cstring
+\family default
+, 
+\family typewriter
+cint,
+\family default
+ 
+\family typewriter
+cuint,
+\family default
+ etc.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+verify descriptor mapping: 
+\family typewriter
+zstreamspecs.c
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+cross compiling i386/x64/Linux/Windows etc.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+cstring
+\family default
+, 
+\family typewriter
+cint
+\family default
+, probably 
+\family typewriter
+struct
+\family default
+ alignments vary
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+see import/binding in test section: 
+\family typewriter
+tZstreamSpecs()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+doAssert()
+\family default
+ validity of descriptor mapping
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Zlib part is compiled all first
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+using macros and compile time lists
+\end_layout
+
+\begin_layout Itemize
+note the compile time path separator D
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+rather than 
+\family typewriter
+/
+\family default
+ operator or 
+\family typewriter
+DirSep
+\end_layout
+
+\begin_layout Itemize
+when host/target systems differ (eg.
+ Posix/Windows)
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Summary
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+NIM Summary
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Produces code for target system/compiler
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C/C++/ObjC, JS
+\end_layout
+
+\begin_layout Itemize
+Multi paradigm language
+\end_layout
+
+\begin_layout Itemize
+extensible, DSL, accessible AST
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Targeting C
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Easy to interface C libraries
+\end_layout
+
+\begin_layout Itemize
+Supports C cross compiling
+\end_layout
+
+\begin_layout Itemize
+GDB aware for debugging
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Young language
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Small (but not too small) user group
+\end_layout
+
+\begin_layout Itemize
+Documentation OK (possibly more examples needed)
+\end_layout
+
+\begin_layout Itemize
+No big sponsors
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document
