@@ -1,0 +1,35 @@
+presentation
+
+  motivation for compiling to C
+    Checking out well known systems
+    Using plain/bare bone C
+    Solution: Compile to C
+      note: rust used ownersip model for dyn memory control
+  choices, candidates
+    Useful tools to generate C code
+  result
+    I ended up choosing NIM
+
+  examples
+    Hello World
+    Oddities/Niceties
+      explain tail() function, sequences, will come back to that later
+    Simple Functional Stuff
+
+  Summary
+    NIM Summary
+
+Code example
+  example.nim
+    compiler, show executables
+      make run
+        compile and test
+      make min
+        minimal exe
+      make bin
+        standard exe
+    walk generated sources
+      show testHead in NIM source code example.nim
+      find testhead in C source code example-run-nostrip.c
+      find testhead in C source code example-minimal-strip.c
+        constant was pre-processed with custom function

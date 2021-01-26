@@ -8,10 +8,10 @@ In this talk I will discuss how I use the NIM compiler
 (http://nim-lang.org) for implementing forensic scanner tools and
 traversing file/directory objects recursively. A high-level
 (imperative, oo, functional, procedural, generic, reflective, etc.)
-language by design, NIM produces C code ready for cross compiling. 
+language by design, NIM produces C code ready for cross compiling.
 
 After a short introduction about general language features (see
-http://nim-by-example.github.io/types/objects) I will proceed with 
+http://nim-by-example.github.io/types/objects) I will proceed with
 
  - explaining how NIM generates C code and subsequent binaries
  - interfacing the generic ZLIB source code, and C code in general

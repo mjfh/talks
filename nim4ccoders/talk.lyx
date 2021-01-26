@@ -813,7 +813,7 @@ Still experimental version
 \shape italic
 \size footnotesize
 \strikeout default
-(as of 2017)
+ (as of 2017)
 \end_layout
 
 \begin_layout Itemize
@@ -1195,7 +1195,7 @@ Closure support often needs annotation
 \begin_layout Itemize
 For C the pragma 
 \family typewriter
-{.procvar.}
+{.closure.}
 \family default
  usually works
 \end_layout
@@ -2300,13 +2300,13 @@ C code files are generated
 \begin_layout Itemize
 placed into the 
 \family typewriter
-./nimcache
+~/.cache/nim
 \family default
  directory
 \end_layout
 
 \begin_layout Itemize
-one C source per imported library
+one additional C source per imported library
 \end_layout
 
 \end_deeper
@@ -2493,13 +2493,25 @@ check generated code
 \end_deeper
 \end_deeper
 \begin_layout Itemize
+
+\strikeout on
+\color gray
 function: 
 \family typewriter
 cnfValue()
+\strikeout default
+ 
+\family default
+\shape italic
+\size footnotesize
+(example from 2017)
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
+
+\strikeout on
+\color gray
 input 
 \family typewriter
 cnfTable()
@@ -2516,6 +2528,9 @@ string
 \end_layout
 
 \begin_layout Itemize
+
+\strikeout on
+\color gray
 add item that always matches: 
 \family typewriter
 concat(@[(s,
@@ -2530,18 +2545,27 @@ concat(@[(s,
 \end_layout
 
 \begin_layout Itemize
+
+\strikeout on
+\color gray
 filter out first match: 
 \family typewriter
 filterIt(it[0] == s)
 \end_layout
 
 \begin_layout Itemize
+
+\strikeout on
+\color gray
 get first match: 
 \family typewriter
 head()
 \end_layout
 
 \begin_layout Itemize
+
+\strikeout on
+\color gray
 extract pair from sequence: 
 \family typewriter
 [0]
@@ -2575,84 +2599,88 @@ Compile Time Coding
 
 \begin_deeper
 \begin_layout FrameSubtitle
-code walk over misc/nimsrc.nim
+code walk over misc/nimsrc.nim 
+\shape italic
+\size footnotesize
+\color gray
+(example from 2017)
 \end_layout
 
 \begin_layout Itemize
-template: 
-\family typewriter
-nimSrcFilename()
+
+\shape italic
+\strikeout on
+\color gray
+template: nimSrcFilename()
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-compiler support: 
-\family typewriter
-instantiationInfo()
+
+\shape italic
+\strikeout on
+\color gray
+compiler support: instantiationInfo()
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 info about code that invokes it, so it must be a macro/template
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-function
-\family typewriter
-s:
-\family default
- 
-\family typewriter
-cnfTable()
-\family default
- 
-\family typewriter
-and
-\family default
- 
-\family typewriter
-cnfValue()
+
+\shape italic
+\strikeout on
+\color gray
+functions: cnfTable() and cnfValue()
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-extract AVP list from C header 
-\family typewriter
-config.h
+
+\shape italic
+\strikeout on
+\color gray
+extract AVP list from C header config.h
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-from 
-\family typewriter
-autoconf
-\family default
- environment
+
+\shape italic
+\strikeout on
+\color gray
+from autoconf environment
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-all compile time: 
-\family typewriter
-slurp
-\family default
-/staticRead, 
-\family typewriter
-gorge
-\family default
-/staticExec
+
+\shape italic
+\strikeout on
+\color gray
+all compile time: slurp/staticRead, gorge/staticExec
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 no OO support
 \end_layout
 
 \begin_layout Itemize
-compiler quits if 
-\family typewriter
-slurp()
-\family default
- fails
+
+\shape italic
+\strikeout on
+\color gray
+compiler quits if slurp() fails
 \end_layout
 
 \end_deeper
@@ -2680,9 +2708,17 @@ C Bindings
 \begin_deeper
 \begin_layout FrameSubtitle
 code walk over zlib/zlib.nim
+\shape italic
+\size footnotesize
+\color gray
+ (example from 2017)
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 C 
 \family typewriter
 struct z_stream
@@ -2695,10 +2731,18 @@ object TZStream
 
 \begin_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 NIM objects are GC controlled (tuples are not)
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 compatibility types 
 \family typewriter
 cstring
@@ -2716,6 +2760,10 @@ cuint,
 
 \end_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 verify descriptor mapping: 
 \family typewriter
 zstreamspecs.c
@@ -2723,6 +2771,10 @@ zstreamspecs.c
 
 \begin_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 cross compiling i386/x64/Linux/Windows etc.
 \end_layout
 
@@ -2730,6 +2782,9 @@ cross compiling i386/x64/Linux/Windows etc.
 \begin_layout Itemize
 
 \family typewriter
+\shape italic
+\strikeout on
+\color gray
 cstring
 \family default
 , 
@@ -2745,6 +2800,10 @@ struct
 
 \end_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 see import/binding in test section: 
 \family typewriter
 tZstreamSpecs()
@@ -2753,6 +2812,9 @@ tZstreamSpecs()
 \begin_layout Itemize
 
 \family typewriter
+\shape italic
+\strikeout on
+\color gray
 doAssert()
 \family default
  validity of descriptor mapping
@@ -2760,20 +2822,36 @@ doAssert()
 
 \end_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 Zlib part is compiled all first
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 using macros and compile time lists
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 note the compile time path separator D
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 rather than 
 \family typewriter
 /
@@ -2784,6 +2862,10 @@ DirSep
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
+\strikeout on
+\color gray
 when host/target systems differ (eg.
  Posix/Windows)
 \end_layout

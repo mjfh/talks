@@ -30,6 +30,8 @@ example-run-nostrip: $(EXAMPLE_SRC)
 	gcc -E -I$(NIM_HEADERS) $(CACHEDD_DIR)/@m$(EXAMPLE_SRC).c | indent -o $@.c
 	@echo "*** cache:"
 	@ls -l $(CACHEDD_DIR)/* | sed 's/^/    /'
+	@echo "*** executable:"
+	@ls -l $@ | sed 's/^/    /'
 
 example-release-strip: $(EXAMPLE_SRC)
 	@rm -f $@ $(CACHEDR_DIR)/*
@@ -37,6 +39,8 @@ example-release-strip: $(EXAMPLE_SRC)
 	gcc -E -I$(NIM_HEADERS) $(CACHEDR_DIR)/@m$(EXAMPLE_SRC).c | indent -o $@.c
 	@echo "*** cache:"
 	@ls -l $(CACHEDR_DIR)/* | sed 's/^/    /'
+	@echo "*** executable:"
+	@ls -l $@ | sed 's/^/    /'
 
 example-minimal-strip: $(EXAMPLE_SRC)
 	@rm -f $@ $(CACHEDR_DIR)/*
@@ -44,6 +48,8 @@ example-minimal-strip: $(EXAMPLE_SRC)
 	gcc -E -I$(NIM_HEADERS) $(CACHEDR_DIR)/@m$(EXAMPLE_SRC).c | indent -o $@.c
 	@echo "*** cache:"
 	@ls -l $(CACHEDR_DIR)/* | sed 's/^/    /'
+	@echo "*** executable:"
+	@ls -l $@ | sed 's/^/    /'
 
 clean:
 	rm -f example-*-*strip example-*-*strip.c
