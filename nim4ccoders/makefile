@@ -53,3 +53,4 @@ example-minimal-strip: $(EXAMPLE_SRC)
 
 clean:
 	rm -f example-*-*strip example-*-*strip.c
+	rm -f *~
